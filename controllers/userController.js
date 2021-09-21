@@ -10,9 +10,9 @@ module.exports.checkEmailExists = (reqBody) => {
 	return User.find({ email: reqBody.email})
 	.then((result) => {
 		if(result.length !== 0){
-			return "Email already exists";
+			return true;
 		} else {
-			return "Email is available"
+			return false;
 		}
 	}) 
 }
@@ -22,28 +22,22 @@ module.exports.checkUsernameExists = (reqBody) => {
 	return User.find({ username: reqBody.username})
 	.then((result) => {
 		if(result.length !== 0){
-			return "Username already exists";
+			return true;
 		} else {
-			return "Username is available";
+			return false;
 		}
 	}) 
 }
 
 module.exports.register = (reqBody) => {
-	// console.log("reqBody register",)
-	let checkPass ;
+
 	let newUser = new User ({
 			username: reqBody.username,
 			email: reqBody.email,
 			password: bcrypt.hashSync(reqBody.password, 10),
 			mobileNo: reqBody.mobileNo,
-		})	
-	let password = reqBody.password
-	if(password.length < 8) {
-		console.log("password.length", password.length)
-		checkPass = false;
-		return checkPass
-	} else {
+	})	
+
 		
 
 		return newUser.save()
@@ -56,11 +50,6 @@ module.exports.register = (reqBody) => {
 		return checkPass;
 		}})	
 	}
-
-	console.log(checkPass, "check")
-	return checkPass;
-}
-
 
 module.exports.login = (reqBody) => {
 
