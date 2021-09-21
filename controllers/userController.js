@@ -29,6 +29,7 @@ module.exports.checkUsernameExists = (reqBody) => {
 	}) 
 }
 
+
 module.exports.register = (reqBody) => {
 
 	let newUser = new User ({
@@ -53,18 +54,18 @@ module.exports.register = (reqBody) => {
 
 module.exports.login = (reqBody) => {
 
-	return User.findOne({email: reqBody.email})
+	return User.findOne({username: reqBody.username})
 	.then(result => {
 		// console.log("userdata", result)
 		if(result == null){
-			return "Email is not yet registered"
+			return false;
 		} else {
 			const isPasswordCorrect = bcrypt.compareSync(reqBody.password, result.password)
 
 			if(isPasswordCorrect === true){
 				return { access: auth.createAccessToken(result.toObject())}
 			} else {
-				return "Incorrect Password"
+				return false;
 			}
 		}
 	})
