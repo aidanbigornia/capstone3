@@ -54,7 +54,7 @@ module.exports.register = (reqBody) => {
 
 module.exports.login = (reqBody) => {
 
-	return User.findOne({email: reqBody.email})
+	return User.findOne({username: reqBody.username})
 	.then(result => {
 		// console.log("userdata", result)
 		if(result == null){
