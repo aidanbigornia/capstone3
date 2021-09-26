@@ -15,7 +15,7 @@ module.exports.addProduct = (reqBody) => {
 		if(error){
 			return "Product Not Added. Please Check Details First.";
 		} else {
-			return "Product Added.";
+			return true;
 		}
 	})
 }
@@ -58,9 +58,9 @@ module.exports.editProduct = (params, reqBody) => {
 	return Product.findByIdAndUpdate(params, updatedProduct, {new:true})
 	.then((result,error) => {
 		if(error){
-			return "Update Failed";
+			return false;
 		} else {
-			return "Update Successful";
+			return true;
 		}
 	})
 }
@@ -75,9 +75,9 @@ module.exports.archiveProduct = (params) => {
 	return Product.findByIdAndUpdate(params, updatedIsActive, {new:true})
 	.then((result, error) => {
 		if(error){
-			return "Something Went Wrong";
+			return false;
 		} else {
-			return "Product Archived."
+			return true;
 		}
 	})
 }
@@ -92,9 +92,9 @@ module.exports.unarchiveProduct = (params) => {
 	return Product.findByIdAndUpdate(params, updatedIsActive, {new:true})
 	.then((result, error) => {
 		if(error){
-			return "Something Went Wrong";
+			return false;
 		} else {
-			return "Product Unarchived."
+			return true;
 		}
 	})
 }
@@ -104,9 +104,9 @@ module.exports.deleteProduct = (params) => {
 
 	return Product.findByIdAndDelete(params).then((result, error)=> {
 		if(error){
-			return "Something went Wrong";
+			return false;
 		} else {
-			return "Product Deleted";
+			return true;
 		}
 	})
 }
