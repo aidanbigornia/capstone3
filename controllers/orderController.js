@@ -6,20 +6,20 @@ const auth = require("./../auth");
 // CREATE CART PER USER
 module.exports.addCart = (data) => {
 	 let newOrder = new Order({
-    // userId: data.id,
+    userId: data.id,
     email: data.email,
     username: data.username,
   });
-
+  console.log("data", data)
   return Order.findOne({ email: data.email }).then((result) => {
-    if (result.length < 1) {
+    if (result.length <= 1) {
       return newOrder.save().then((result, error) => {
         if (error) {
           return false;
         } else {
           return true;
         }
-      });
+      })
     } else {
       return false;
     }

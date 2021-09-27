@@ -12,8 +12,8 @@ const auth = require('./../auth');
 router.post("/add-cart", auth.verify, (req,res) => {
 
 	let data = auth.decode(req.headers.authorization);
-	console.log(data, "data")
-	orderController.addCart(data).then(result => console.log(result))
+	// console.log(data, "data")
+	orderController.addCart(data).then(result => res.send(result))
 })
 
 // ADD ORDER TO CART
