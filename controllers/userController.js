@@ -131,11 +131,8 @@ module.exports.deleteUser = (params) => {
 module.exports.getAllUsers = () => {
 
 	return User.find()
-	.then((result, error) => {
-		if(error){
-			return error;
-		} else {
-			return true;
-		}
+	.then(result => {
+		return result;
 	})
+			
 }
