@@ -5,24 +5,24 @@ const auth = require("./../auth");
 
 // CREATE CART PER USER
 module.exports.addCart = (data) => {
-	let newOrder = new Order({
-		userId: data.id,
-		email: data.email,
-		username: data.username
-	});
+	 let newOrder = new Order({
+    userId: data.id,
+    email: data.email,
+    firstName: data.firstName,
+  });
 
-	return Order.find({email: data.email}).then((result) => {
-		if (result.length < 1) {
-      		return newOrder.save().then((result, error) => {
-       			if (error) {
-          			return false;
-        		} else {
-         			return true;
-        		}
-      		});
-	    } else {
-	      return false;
-	    }
+  return Order.find({ email: data.email }).then((result) => {
+    if (result.length < 1) {
+      return newOrder.save().then((result, error) => {
+        if (error) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+    } else {
+      return false;
+    }
   });
 };
 
