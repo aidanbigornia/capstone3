@@ -5,25 +5,26 @@ const auth = require("./../auth");
 
 // CREATE CART PER USER
 module.exports.addCart = (data) => {
-	 let newOrder = new Order({
-    userId: data.id,
-    email: data.email,
-    username: data.username,
-  });
+	 // let newOrder = new Order({
+  //   userId: data.id,
+  //   email: data.email,
+  //   username: data.username,
+  // });
 
-  return Order.find({ email: data.email }).then((result) => {
-    if (result.length < 1) {
-      return newOrder.save().then((result, error) => {
-        if (error) {
-          return false;
-        } else {
-          return true;
-        }
-      });
-    } else {
-      return false;
-    }
-  });
+  // return Order.find({ email: data.email }).then((result) => {
+  //   if (result.length < 1) {
+  //     return newOrder.save().then((result, error) => {
+  //       if (error) {
+  //         return false;
+  //       } else {
+  //         return true;
+  //       }
+  //     });
+  //   } else {
+  //     return false;
+  //   }
+  // });
+  return data;
 };
 
 
@@ -32,22 +33,8 @@ module.exports.createOrder = (params, data, reqBody) => {
   return Order.findOne({ userId: data.id }).then((cart) => {
     // console.log("cart",cart)
     if (cart !==  null) {
-    //   Order.findOne({productId: params})
-    //     let order = cart.orders;
-    //     console.log("order",order)
-    //     console.log(order.length)
-    //     console.log(params)
-    //     for(x=0 ; x < order.length ; x++){
-    //       if(order[x].productId == params){
-    //         order[x].quantity += parseInt(reqBody.quantity);
-    //         order[x].subtotal += parseInt(reqBody.quantity) + order[x].quantity) * order[x].price ;
-    //         break;
-    //       } else {
-    //         console.log("hindi ito")
-    //       }
-      // }
       return Product.findOne({ _id: params }).then((result) => {
-        let prod = reqBody.quantity * result.price;
+        // let prod = reqBody.quantity * result.price;
         cart.orders.push({
           productId: result._id,
           name: result.name,
