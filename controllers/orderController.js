@@ -8,7 +8,7 @@ module.exports.addCart = (data) => {
 	 let newOrder = new Order({
     userId: data.id,
     email: data.email,
-    firstName: data.firstName,
+    username: data.username,
   });
 
   return Order.find({ email: data.email }).then((result) => {
