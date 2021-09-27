@@ -52,4 +52,9 @@ router.delete("/:userId/delete", auth.verify, (req,res) => {
 	userController.deleteUser(req.params.userId).then(result => res.send(result))
 })
 
+// GET ALL USERS
+router.delete("/all", auth.verify, (req,res) => {
+	userController.getAllUsers().then(result => res.send(result))
+})
+
 module.exports = router;

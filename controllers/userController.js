@@ -92,7 +92,7 @@ module.exports.setAdmin = (params) => {
 		if (error) {
 			return false;
 		} else {
-			return "Set Admin Successful."
+			return true;
 		}
 	})
 }
@@ -109,21 +109,33 @@ module.exports.unsetAdmin = (params) => {
 		if (error) {
 			return false;
 		} else {
-			return "Unset Admin Successful."
+			return true;
 		}
 	}
 	)
 }
 
 
-module.exports. deleteUser = (params) => {
+module.exports.deleteUser = (params) => {
 
 	return User.findByIdAndDelete(params)
 	.then((result, error) => {
 		if(error){
 			return error;
 		} else {
-			return "User Deleted."
+			return true;
+		}
+	})
+}
+
+module.exports.getAllUsers = () => {
+
+	return User.find()
+	.then((result, error) => {
+		if(error){
+			return error;
+		} else {
+			return true;
 		}
 	})
 }
