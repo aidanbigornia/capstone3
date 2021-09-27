@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 
 // PORT
-const PORT = process.env.PORT ||4000;
+const PORT = process.env.PORT || 3000;
 // https://bookish-mnl.herokuapp.com/
 const app = express();
 
